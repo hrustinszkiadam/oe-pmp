@@ -169,7 +169,7 @@ class Program
         }
 
         TimeSpan timeSpan = TimeSpan.FromSeconds((int)seconds);
-        Console.WriteLine($"\nAz időtartam formázva: {timeSpan.Minutes}:{String.Format("{0:D2}", timeSpan.Seconds)}");
+        Console.WriteLine($"\nAz időtartam formázva: {timeSpan.Minutes}:{timeSpan.Seconds:D2}");
     }
 
     static void HetedikNyolcadik()
