@@ -31,6 +31,8 @@ class Program
         Tizenkettedik();
         AfterTask();
 
+        Tizenharmadik();
+
         // Wait for input before closing
         Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
         Console.ReadLine();
@@ -336,5 +338,88 @@ class Program
         {
             Console.WriteLine($"\nA '{letter}' nem érvényes betű.");
         }
+    }
+
+    static void Tizenharmadik()
+    {
+        Console.WriteLine("Tizenharmadik feladat\n");
+
+        double? v = null;
+
+        while (v == null || v < 0)
+        {
+            Console.Write("V = ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double n))
+            {
+                v = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        double? r1 = null;
+
+        while (r1 == null || r1 < 0)
+        {
+            Console.Write("R1 = ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double n))
+            {
+                r1 = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        double? r2 = null;
+
+        while (r2 == null || r2 < 0)
+        {
+            Console.Write("R2 = ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double n))
+            {
+                r2 = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        double? t = null;
+
+        while (t == null || t < 0)
+        {
+            Console.Write("T = ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double n))
+            {
+                t = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        double filledV = (double)(r1 * t + r2 * t);
+        double filledPercent = (filledV / (double)v) * 100;
+
+        if (filledPercent > 100)
+        {
+            Console.WriteLine($"\n-> A tartály {filledV - v} m3-rel lesz túltöltve.");
+            return;
+        }
+        Console.WriteLine($"\n-> A tartály {filledPercent}%-ban lesz tele.");
     }
 }
