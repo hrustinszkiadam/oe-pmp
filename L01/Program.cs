@@ -22,6 +22,9 @@ class Program
         HetedikNyolcadik();
         AfterTask();
 
+        Kilencedik();
+        AfterTask();
+
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadLine();
@@ -90,7 +93,7 @@ class Program
             }
         }
 
-        int age = DateTime.Now.Year - birthYear.Value;
+        int age = DateTime.Now.Year - (int)birthYear;
         Console.WriteLine($"\nIdén {age} éves vagy.");
         Console.WriteLine($"Jövőre {age + 1} éves leszel.");
     }
@@ -157,7 +160,7 @@ class Program
             }
         }
 
-        TimeSpan timeSpan = TimeSpan.FromSeconds(seconds.Value);
+        TimeSpan timeSpan = TimeSpan.FromSeconds((int)seconds);
         Console.WriteLine($"\nAz időtartam formázva: {timeSpan.Minutes}:{String.Format("{0:D2}", timeSpan.Seconds)}");
     }
 
@@ -208,4 +211,71 @@ class Program
         Console.WriteLine("Sikeres jelszó megerősítés!");
         Console.ResetColor();
     }
+
+    static void Kilencedik()
+    {
+        Console.WriteLine("Kilencedik feladat\n");
+
+        int? number1 = null;
+
+        while (number1 == null)
+        {
+            Console.Write("Add meg az első számot: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int n))
+            {
+                number1 = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        int? number2 = null;
+
+        while (number2 == null)
+        {
+            Console.Write("Add meg a második számot: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int n))
+            {
+                number2 = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        string operation = "";
+
+        while (operation != "+" && operation != "-" && operation != "*" && operation != "/")
+        {
+            Console.Write("Add meg a műveletet (+, -, *, /): ");
+            operation = Console.ReadLine() ?? "";
+
+            if (operation != "+" && operation != "-" && operation != "*" && operation != "/")
+            {
+                Console.WriteLine("Érvénytelen művelet. Kérlek, próbáld újra.");
+            }
+        }
+
+        double n1 = (double)number1;
+        double n2 = (double)number2;
+
+        double result = operation switch
+        {
+            "+" => n1 + n2,
+            "-" => n1 - n2,
+            "*" => n1 * n2,
+            "/" => n2 != 0 ? (double)n1 / n2 : throw new DivideByZeroException("Nullával való osztás nem engedélyezett."),
+            _ => throw new InvalidOperationException("Érvénytelen művelet.")
+        };
+        Console.WriteLine($"\n{number1} {operation} {number2} = {result}");
+    }
+
+    
 }
