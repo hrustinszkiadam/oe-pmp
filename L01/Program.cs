@@ -19,6 +19,9 @@ class Program
         Hatodik();
         AfterTask();
 
+        HetedikNyolcadik();
+        AfterTask();
+
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadLine();
@@ -156,5 +159,53 @@ class Program
 
         TimeSpan timeSpan = TimeSpan.FromSeconds(seconds.Value);
         Console.WriteLine($"\nAz időtartam formázva: {timeSpan.Minutes}:{String.Format("{0:D2}", timeSpan.Seconds)}");
+    }
+
+    static void HetedikNyolcadik()
+    {
+        Console.WriteLine("Hetedik és nyolcadik feladat\n");
+
+        static string ReadPassword()
+        {
+            string password = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(intercept: true);
+
+                if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password[..^1];
+                    Console.Write("\b \b");
+                }
+                else if (!char.IsControl(key.KeyChar))
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return password;
+        }
+
+        Console.Write("Add meg a jelszavad: ");
+        string password = ReadPassword();
+        Console.Write("\nErősítsd meg a jelszavad: ");
+        string passwordConfirm = ReadPassword();
+    
+        Console.WriteLine();
+        if (password != passwordConfirm)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("A jelszavak nem egyeznek meg.");
+            Console.ResetColor();
+            return;
+        }
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Sikeres jelszó megerősítés!");
+        Console.ResetColor();
     }
 }
