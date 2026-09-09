@@ -8,6 +8,10 @@ class Program
         AfterTask();
 
         Harmadik();
+        AfterTask();
+
+        Negyedik();
+        AfterTask();
 
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
@@ -34,7 +38,6 @@ class Program
         Console.WindowWidth = 120;
         Console.BackgroundColor = ConsoleColor.Black;
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.SetCursorPosition(0, 0);
         Console.CursorVisible = false;
 
         #endregion
@@ -54,6 +57,32 @@ class Program
             name = Console.ReadLine();
         }
 
-        Console.WriteLine($"Szia, {name}!");
+        Console.WriteLine($"\nSzia, {name}!");
+    }
+
+    static void Negyedik()
+    {
+        Console.WriteLine("Negyedik feladat\n");
+
+        int? birthYear = null;
+
+        while (birthYear == null)
+        {
+            Console.Write("Add meg a születési éved: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int year))
+            {
+                birthYear = year;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen év. Kérlek, próbáld újra.");
+            }
+        }
+
+        int age = DateTime.Now.Year - birthYear.Value;
+        Console.WriteLine($"\nIdén {age} éves vagy.");
+        Console.WriteLine($"Jövőre {age + 1} éves leszel.");
     }
 }
