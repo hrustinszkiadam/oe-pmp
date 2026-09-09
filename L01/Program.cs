@@ -25,6 +25,9 @@ class Program
         Kilencedik();
         AfterTask();
 
+        Tizenegyedik();
+        AfterTask();
+
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadLine();
@@ -277,5 +280,34 @@ class Program
         Console.WriteLine($"\n{number1} {operation} {number2} = {result}");
     }
 
-    
+    static void Tizenegyedik()
+    {
+        Console.WriteLine("Tizenegyedik feladat\n");
+
+        int? number = null;
+
+        while (number == null || number < 0 || number > 9)
+        {
+            Console.Write("Adj meg egy 0 és 9 közötti számot: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int n))
+            {
+                number = n;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen szám. Kérlek, próbáld újra.");
+            }
+        }
+
+        string[] hungarianNumbers = ["nulla", "egy", "kettő", "három", "négy", "öt", "hat", "hét", "nyolc", "kilenc"];
+        Console.WriteLine($"\nAz általad megadptt szám: {hungarianNumbers[(int)number]}");
+    }
+
+    static void Tizenkettedik()
+    {
+        Console.WriteLine("Tizenkettedik feladat\n");
+
+    }
 }
