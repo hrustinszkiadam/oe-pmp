@@ -28,8 +28,11 @@ class Program
         Tizenegyedik();
         AfterTask();
 
+        Tizenkettedik();
+        AfterTask();
+
         // Wait for input before closing
-        Console.WriteLine("\nPress any key to exit...");
+        Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
         Console.ReadLine();
     }
 
@@ -38,7 +41,7 @@ class Program
         Console.CursorVisible = true;
         Console.ResetColor();
 
-        Console.WriteLine("\nPress any key to go to the next task...");
+        Console.WriteLine("\nNyomj meg egy gombot a továbbhaladáshoz...");
         Console.ReadLine();
 
         Console.Clear();
@@ -309,5 +312,29 @@ class Program
     {
         Console.WriteLine("Tizenkettedik feladat\n");
 
+        char? letter = null;
+
+        while (letter == null)
+        {
+            Console.Write("Adj meg egy betűt: ");
+            letter = Console.ReadLine()?.FirstOrDefault();
+        }
+
+        char[] consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+
+        char[] vowels = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
+
+        if (consonants.Contains(char.ToLower((char)letter)))
+        {
+            Console.WriteLine($"\nA '{letter}' betű mássalhangzó.");
+        }
+        else if (vowels.Contains(char.ToLower((char)letter)))
+        {
+            Console.WriteLine($"\nA '{letter}' betű magánhangzó.");
+        }
+        else
+        {
+            Console.WriteLine($"\nA '{letter}' nem érvényes betű.");
+        }
     }
 }
