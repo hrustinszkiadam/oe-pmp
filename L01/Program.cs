@@ -34,7 +34,7 @@ class Program
         Tizenharmadik();
 
         // Wait for input before closing
-        Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
+        Console.WriteLine("\nNyomd meg at ENTER-t a kilépéshez...");
         Console.ReadLine();
     }
 
@@ -43,7 +43,7 @@ class Program
         Console.CursorVisible = true;
         Console.ResetColor();
 
-        Console.WriteLine("\nNyomj meg egy gombot a továbbhaladáshoz...");
+        Console.WriteLine("\nNyomd meg az ENTER-t a továbbhaladáshoz...");
         Console.ReadLine();
 
         Console.Clear();
