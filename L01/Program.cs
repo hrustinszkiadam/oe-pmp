@@ -13,6 +13,9 @@ class Program
         Negyedik();
         AfterTask();
 
+        Otodik();
+        AfterTask();
+
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadLine();
@@ -84,5 +87,46 @@ class Program
         int age = DateTime.Now.Year - birthYear.Value;
         Console.WriteLine($"\nIdén {age} éves vagy.");
         Console.WriteLine($"Jövőre {age + 1} éves leszel.");
+    }
+
+    static void Otodik()
+    {
+        Console.WriteLine("Ötödik feladat\n");
+
+        double? height = null;
+        double? mass = null;
+
+        while (height == null)
+        {
+            Console.Write("Add meg a magasságod (m): ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double h))
+            {
+                height = h;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen érték. Kérlek, próbáld újra.");
+            }
+        }
+
+        while (mass == null)
+        {
+            Console.Write("Add meg a súlyod (kg): ");
+            string? input = Console.ReadLine();
+
+            if (double.TryParse(input, out double m))
+            {
+                mass = m;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen érték. Kérlek, próbáld újra.");
+            }
+        }
+
+        double bmi = (double)mass / (double)(height * height);
+        Console.WriteLine($"\nA BMI-d: {bmi:F2}");
     }
 }
