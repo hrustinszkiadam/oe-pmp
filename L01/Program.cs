@@ -126,7 +126,7 @@ class Program
             }
         }
 
-        double bmi = (double)mass / (double)(height * height);
+        double bmi = (double)(mass / Math.Pow((double)height, 2));
         Console.WriteLine($"\nA BMI-d: {bmi:F2}");
     }
 }
