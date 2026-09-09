@@ -16,6 +16,9 @@ class Program
         Otodik();
         AfterTask();
 
+        Hatodik();
+        AfterTask();
+
         // Wait for input before closing
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadLine();
@@ -128,5 +131,30 @@ class Program
 
         double bmi = (double)(mass / Math.Pow((double)height, 2));
         Console.WriteLine($"\nA BMI-d: {bmi:F2}");
+    }
+
+    static void Hatodik()
+    {
+        Console.WriteLine("Hatodik feladat\n");
+
+        int? seconds = null;
+
+        while (seconds == null || seconds < 0)
+        {
+            Console.Write("Adj meg egy időtartamot másodpercben: ");
+            string? input = Console.ReadLine();
+
+            if (int.TryParse(input, out int s))
+            {
+                seconds = s;
+            }
+            else
+            {
+                Console.WriteLine("Érvénytelen érték. Kérlek, próbáld újra.");
+            }
+        }
+
+        TimeSpan timeSpan = TimeSpan.FromSeconds(seconds.Value);
+        Console.WriteLine($"\nAz időtartam formázva: {timeSpan.Minutes}:{String.Format("{0:D2}", timeSpan.Seconds)}");
     }
 }
