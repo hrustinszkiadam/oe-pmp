@@ -300,13 +300,14 @@ class Program
             Console.Clear();
             PrintTaskHeader(9);
             Console.WriteLine($"Hátralévő idő: {remaining / 60:D2}:{remaining % 60:D2}");
+            Console.Beep(2000, 200);
             Thread.Sleep(1000);
         }
 
         Console.BackgroundColor = ConsoleColor.Red;
         Console.Clear();
         Console.WriteLine("Lejárt az idő!");
-        Console.Beep();
+        Console.Beep(5000, 1000);
         Console.ResetColor();
     }
 
