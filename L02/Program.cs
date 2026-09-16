@@ -25,6 +25,15 @@ class Program
         TaskSeven();
         CleanUp();
 
+        TaskEight();
+        CleanUp();
+
+        TaskNine();
+        CleanUp();
+
+        TaskTen();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -241,5 +250,74 @@ class Program
         }
 
         Console.WriteLine($"A(z) {number} szám faktoriálisa: {factorial}");
+    }
+
+    static void TaskEight()
+    {
+        PrintTaskHeader(8);
+
+        int tableSize = 9;
+        Console.WriteLine("Szorzótábla:");
+        for (int i = 1; i <= tableSize; i++)
+        {
+            if(i == 1)
+            {
+                Console.Write($"  |");
+            }
+            Console.Write($"\t{i}");
+        }
+        Console.WriteLine("\n----------------------------------------------------------------------------");
+        for (int i = 1; i <= tableSize; i++)
+        {
+            Console.Write($"{i} |\t");
+            for (int j = 1; j <= tableSize; j++)
+            {
+                Console.Write($"{i * j}\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void TaskNine()
+    {
+        PrintTaskHeader(9);
+
+        Console.Write("Add meg az időtartamot másodpercben: ");
+        int seconds = int.Parse(Console.ReadLine() ?? "0");
+
+        if (seconds <= 0)
+        {
+            Console.WriteLine("A megadott időtartam nem pozitív egész szám.");
+            return;
+        }
+
+        for (int remaining = seconds; remaining > 0; remaining--)
+        {
+            Console.Clear();
+            PrintTaskHeader(9);
+            Console.WriteLine($"Hátralévő idő: {remaining / 60:D2}:{remaining % 60:D2}");
+            Thread.Sleep(1000);
+        }
+
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.Clear();
+        Console.WriteLine("Lejárt az idő!");
+        Console.Beep();
+        Console.ResetColor();
+    }
+
+    static void TaskTen()
+    {
+        PrintTaskHeader(10);
+
+        Console.Write("Adj meg egy pozitív egész számot: ");
+        uint number = uint.Parse(Console.ReadLine() ?? "0");
+        if (number <= 0)
+        {
+            Console.WriteLine("A megadott szám nem pozitív egész szám.");
+            return;
+        }
+
+        Console.WriteLine($"A(z) {number} szám bináris reprezentációja: {Convert.ToString(number, 2).PadLeft(32, '0')}");
     }
 }
