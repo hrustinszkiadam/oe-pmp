@@ -221,7 +221,11 @@ class Program
         numberOfDivisors++; // include the number itself
         Console.WriteLine($"A(z) {number} számnak {numberOfDivisors} osztója van.");
 
-        if (numberOfDivisors == 2)
+        if (numberOfDivisors == 1)
+        {
+            Console.WriteLine($"A(z) {number} szám egyes szám.");
+        }
+        else if (numberOfDivisors == 2)
         {
             Console.WriteLine($"A(z) {number} szám prímszám.");
         }
