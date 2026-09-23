@@ -35,6 +35,8 @@ class Program
         EleventhTask();
         CleanUp();
 
+        TwelfthTask();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -492,5 +494,63 @@ class Program
 
         Console.WriteLine("\nElforgatott mátrix:");
         PrintMatrix(matrix);
+    }
+
+    static bool CanReachEnd(bool[,] maze, bool[,] visited, int row, int col)
+    {
+        int rows = maze.GetLength(0);
+        int cols = maze.GetLength(1);
+
+        if(row < 0 || row >= rows || col < 0 || col >= cols || !maze[row, col] || visited[row, col])
+        {
+            return false;
+        }
+
+        if(row == rows - 1 && col == cols - 1)
+        {
+            return true;
+        }
+
+        visited[row, col] = true;
+
+        return CanReachEnd(maze, visited, row - 1, col)
+            || CanReachEnd(maze, visited, row + 1, col)
+            || CanReachEnd(maze, visited, row, col - 1)
+            || CanReachEnd(maze, visited, row, col + 1);
+    }
+
+    static void TwelfthTask()
+    {
+        PrintTaskHeader(12);
+
+        const int rows = 4;
+        const int cols = 10;
+        bool[,] maze = new bool[rows, cols];
+        Random rnd = new();
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                maze[i, j] = rnd.Next(10) < 7;
+                Console.Write(maze[i, j] ? "T " : "F ");
+            }
+            Console.WriteLine();
+        }
+
+        Console.Write($"\nAdd meg a kezdő oszlopot (x, 0-{cols - 1}): ");
+        int x = int.Parse(Console.ReadLine() ?? "0");
+        Console.Write($"Add meg a kezdő sort (y, 0-{rows - 1}): ");
+        int y = int.Parse(Console.ReadLine() ?? "0");
+
+        bool[,] visited = new bool[rows, cols];
+        if(CanReachEnd(maze, visited, y, x))
+        {
+            Console.WriteLine("\nA kezdőpontból el lehet jutni a jobb alsó sarokba.");
+        }
+        else
+        {
+            Console.WriteLine("\nA kezdőpontból nem lehet eljutni a jobb alsó sarokba.");
+        }
     }
 }
