@@ -32,6 +32,9 @@ class Program
         TenthTask();
         CleanUp();
 
+        EleventhTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -427,5 +430,67 @@ class Program
         }
         Console.WriteLine("Négyzetes mátrix:");
         PrintMatrix(listMatrix);
+    }
+
+    static void EleventhTask()
+    {
+        PrintTaskHeader(11);
+
+        const int rows = 4;
+        const int cols = 4;
+        int[,] matrix = new int[rows, cols];
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                matrix[i, j] = i * cols + j + 1;
+            }
+        }
+
+        Console.WriteLine("Eredeti mátrix:");
+        PrintMatrix(matrix);
+
+        Console.Write("\nHányszor forgassuk el 90 fokkal (K)? ");
+        int k = int.Parse(Console.ReadLine() ?? "0");
+
+        int top = 0, bottom = rows - 1, left = 0, right = cols - 1;
+        while(top <= bottom && left <= right)
+        {
+            // collect the positions of the current ring in clockwise order
+            List<int> ringRows = [];
+            List<int> ringCols = [];
+            for(int j = left; j <= right; j++) { ringRows.Add(top); ringCols.Add(j); }
+            for(int i = top + 1; i <= bottom; i++) { ringRows.Add(i); ringCols.Add(right); }
+            if(top < bottom)
+            {
+                for(int j = right - 1; j >= left; j--) { ringRows.Add(bottom); ringCols.Add(j); }
+            }
+            if(left < right)
+            {
+                for(int i = bottom - 1; i > top; i--) { ringRows.Add(i); ringCols.Add(left); }
+            }
+
+            int ringLength = ringRows.Count;
+            int[] values = new int[ringLength];
+            for(int p = 0; p < ringLength; p++)
+            {
+                values[p] = matrix[ringRows[p], ringCols[p]];
+            }
+
+            // every element moves k steps forward along the ring
+            for(int p = 0; p < ringLength; p++)
+            {
+                int source = ((p - k) % ringLength + ringLength) % ringLength;
+                matrix[ringRows[p], ringCols[p]] = values[source];
+            }
+
+            top++;
+            bottom--;
+            left++;
+            right--;
+        }
+
+        Console.WriteLine("\nElforgatott mátrix:");
+        PrintMatrix(matrix);
     }
 }
