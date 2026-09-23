@@ -26,6 +26,9 @@ class Program
         EighthTask();
         CleanUp();
 
+        NinthTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -311,5 +314,23 @@ class Program
         }
 
         Console.WriteLine(string.Join(", ", numbers));
+    }
+
+    static void NinthTask()
+    {
+        PrintTaskHeader(9);
+
+        int[] x = [1, 2, 3, 4, 5, 6, 7, 8];
+        Console.WriteLine($"Eredeti tömb: {string.Join(", ", x)}");
+
+        // only iterate to the middle, otherwise the elements get swapped back
+        for(int i = 0; i < x.Length / 2; i++)
+        {
+            int tmp = x[i];
+            x[i] = x[x.Length - i - 1];
+            x[x.Length - i - 1] = tmp;
+        }
+
+        Console.WriteLine($"Megfordított tömb: {string.Join(", ", x)}");
     }
 }
