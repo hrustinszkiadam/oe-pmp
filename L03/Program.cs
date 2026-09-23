@@ -29,6 +29,9 @@ class Program
         NinthTask();
         CleanUp();
 
+        TenthTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -332,5 +335,97 @@ class Program
         }
 
         Console.WriteLine($"Megfordított tömb: {string.Join(", ", x)}");
+    }
+
+    static void PrintMatrix(int[,] matrix)
+    {
+        for(int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for(int j = 0; j < matrix.GetLength(1); j++)
+            {
+                Console.Write($"{matrix[i, j],3}");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void TenthTask()
+    {
+        PrintTaskHeader(10);
+
+        Console.Write("Hány elemű legyen a gyűjtemény? ");
+        int count = int.Parse(Console.ReadLine() ?? "0");
+
+        if(count <= 0)
+        {
+            Console.WriteLine("Az elemszám nem lehet nulla vagy negatív.");
+            return;
+        }
+
+        Random rnd = new();
+        int[] numbers = new int[count];
+        for(int i = 0; i < count; i++)
+        {
+            numbers[i] = rnd.Next(1, 100);
+        }
+
+        // array
+        Console.WriteLine("\n--- Tömb ---");
+        Console.WriteLine($"Elemek: {string.Join(", ", numbers)}");
+
+        int[] everySecond = new int[count / 2];
+        for(int i = 0; i < everySecond.Length; i++)
+        {
+            everySecond[i] = numbers[i * 2 + 1];
+        }
+        Console.WriteLine($"Minden második elem: {string.Join(", ", everySecond)}");
+
+        int[] reversed = new int[count];
+        for(int i = 0; i < count; i++)
+        {
+            reversed[i] = numbers[count - i - 1];
+        }
+        Console.WriteLine($"Fordított sorrend: {string.Join(", ", reversed)}");
+
+        int size = (int)Math.Ceiling(Math.Sqrt(count));
+        int[,] matrix = new int[size, size];
+        for(int i = 0; i < count; i++)
+        {
+            matrix[i / size, i % size] = numbers[i];
+        }
+        Console.WriteLine("Négyzetes mátrix:");
+        PrintMatrix(matrix);
+
+        // list
+        Console.WriteLine("\n--- Lista ---");
+        List<int> numberList = [];
+        foreach(int number in numbers)
+        {
+            numberList.Add(number);
+        }
+        Console.WriteLine($"Elemek: {string.Join(", ", numberList)}");
+
+        List<int> everySecondList = [];
+        for(int i = 1; i < numberList.Count; i += 2)
+        {
+            everySecondList.Add(numberList[i]);
+        }
+        Console.WriteLine($"Minden második elem: {string.Join(", ", everySecondList)}");
+
+        List<int> reversedList = [];
+        for(int i = numberList.Count - 1; i >= 0; i--)
+        {
+            reversedList.Add(numberList[i]);
+        }
+        Console.WriteLine($"Fordított sorrend: {string.Join(", ", reversedList)}");
+
+        int listSize = (int)Math.Ceiling(Math.Sqrt(numberList.Count));
+        int[,] listMatrix = new int[listSize, listSize];
+        for(int i = 0; i < numberList.Count; i++)
+        {
+            listMatrix[i / listSize, i % listSize] = numberList[i];
+        }
+        Console.WriteLine("Négyzetes mátrix:");
+        PrintMatrix(listMatrix);
     }
 }
