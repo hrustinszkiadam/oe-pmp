@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-
         string[] pakli = FirstTask();
         Console.WriteLine(string.Join(", ", pakli));
         CleanUp();
@@ -16,6 +15,9 @@ class Program
         CleanUp();
 
         FifthTask();
+        CleanUp();
+
+        SixthTask();
         CleanUp();
 
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
@@ -174,5 +176,38 @@ class Program
         Console.WriteLine($"\nA megadott életkorok átlaga: {averageAge:F2}");
         Console.WriteLine($"A megadott életkorok átlaga a tapasztalat nélküli személyekre: {averageAgeWithoutExperience:F2}");
         Console.WriteLine($"A legidősebb programozási tapasztalattal rendelkező személy: {names[maxAgeWithExperienceIndex]} ({ages[maxAgeWithExperienceIndex]} éves)");
+    }
+
+    static void SixthTask()
+    {
+        PrintTaskHeader(6);
+
+        const int matrixSize = 3;
+        int[,] matrix = new int[matrixSize, matrixSize];
+        Random rnd = new();
+
+        Console.WriteLine("A mátrix feltöltése véletlenszerű számokkal (0-9):");
+        for(int i = 0; i < matrixSize; i++)
+        {
+            for(int j = 0; j < matrixSize; j++)
+            {
+                matrix[i, j] = rnd.Next(10);
+                Console.Write($"{matrix[i, j]} ");
+            }
+            Console.WriteLine();
+        }
+
+        //transpose the matrix
+        Console.WriteLine("\nA mátrix transzponálása:");
+        int[,] transposedMatrix = new int[matrixSize, matrixSize];
+        for(int i = 0; i < matrixSize; i++)
+        {
+            for(int j = 0; j < matrixSize; j++)
+            {
+                transposedMatrix[i,j] = matrix[j,i];
+                Console.Write($"{transposedMatrix[i,j]} ");
+            }
+            Console.WriteLine();
+        }
     }
 }
