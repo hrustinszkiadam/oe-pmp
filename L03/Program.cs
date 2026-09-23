@@ -15,6 +15,9 @@ class Program
         ThirdTask();
         CleanUp();
 
+        FifthTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -103,5 +106,73 @@ class Program
                 Console.WriteLine($"A(z) '{filter}' szó megtalálható a(z) {i+1}. szóban: {words[i]}");
             }
         }
+    }
+
+    static void FifthTask()
+    {
+        PrintTaskHeader(5);
+
+        List<string> names = [];
+        List<int> ages = [];
+        List<bool> experiences = [];
+        
+        while(true)
+        {
+            Console.Write("Add meg a neved: ");
+            string name = Console.ReadLine() ?? "";
+
+            if(string.IsNullOrWhiteSpace(name))
+            {
+                break;
+            }
+
+            Console.Write("Add meg az életkorod: ");
+            int ageInput = int.Parse(Console.ReadLine() ?? "0");
+
+            if(ageInput <= 0)
+            {
+                Console.WriteLine("Az életkor nem lehet nulla vagy negatív szám.");
+                continue;
+            }
+
+            Console.Write("Van e programozási tapasztalatod? (igen/nem): ");
+            string experienceInput = Console.ReadLine() ?? "";
+            bool hasExperience = experienceInput.Equals("igen", StringComparison.CurrentCultureIgnoreCase);
+
+            names.Add(name);
+            ages.Add(ageInput);
+            experiences.Add(hasExperience);
+        }
+
+        int totalAge = 0;
+        foreach(int age in ages)
+        {
+            totalAge += age;
+        }
+        double averageAge = (double)totalAge / ages.Count;
+
+        int maxAgeWithExperienceIndex = 0;
+        int totalAgeWithoutExperience = 0;
+        int countWithoutExperience = 0;
+
+        for(int i = 0; i < ages.Count; i++)
+        {
+            if(ages[i] > ages[maxAgeWithExperienceIndex] && experiences[i])
+            {
+                maxAgeWithExperienceIndex = i;
+            }
+
+            if(!experiences[i])
+            {
+                totalAgeWithoutExperience += ages[i];
+                countWithoutExperience++;
+            }
+        }
+
+        double averageAgeWithoutExperience = countWithoutExperience > 0 ? (double)totalAgeWithoutExperience / countWithoutExperience : 0;
+
+        Console.WriteLine($"\nA megadott életkorok átlaga: {averageAge:F2}");
+        Console.WriteLine($"A megadott életkorok átlaga a tapasztalat nélküli személyekre: {averageAgeWithoutExperience:F2}");
+        Console.WriteLine($"A legidősebb programozási tapasztalattal rendelkező személy: {names[maxAgeWithExperienceIndex]} ({ages[maxAgeWithExperienceIndex]} éves)");
     }
 }
