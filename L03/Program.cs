@@ -20,6 +20,9 @@ class Program
         SixthTask();
         CleanUp();
 
+        SeventhTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -209,5 +212,77 @@ class Program
             }
             Console.WriteLine();
         }
+    }
+
+    static void SeventhTask()
+    {
+        PrintTaskHeader(7);
+
+        const int fishermenCount = 5;
+        const int fishTypeCount = 4;
+        int[,] catches = new int[fishermenCount, fishTypeCount];
+        Random rnd = new();
+
+        for(int i = 0; i < fishermenCount; i++)
+        {
+            for(int j = 0; j < fishTypeCount; j++)
+            {
+                catches[i, j] = rnd.Next(4);
+            }
+        }
+
+        Console.Write("Horgász".PadRight(10));
+        for(int j = 0; j < fishTypeCount; j++)
+        {
+            Console.Write($"{j + 1}. hal".PadLeft(8));
+        }
+        Console.WriteLine();
+
+        for(int i = 0; i < fishermenCount; i++)
+        {
+            Console.Write($"{i + 1}.".PadRight(10));
+            for(int j = 0; j < fishTypeCount; j++)
+            {
+                Console.Write($"{catches[i, j]}".PadLeft(8));
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("\nFogások halfajtánként:");
+        for(int j = 0; j < fishTypeCount; j++)
+        {
+            int typeTotal = 0;
+            for(int i = 0; i < fishermenCount; i++)
+            {
+                typeTotal += catches[i, j];
+            }
+            Console.WriteLine($"{j + 1}. halfajta: {typeTotal} db");
+        }
+
+        int maxIndex = 0;
+        int maxTotal = -1;
+        bool hasZeroCatch = false;
+        for(int i = 0; i < fishermenCount; i++)
+        {
+            int total = 0;
+            for(int j = 0; j < fishTypeCount; j++)
+            {
+                total += catches[i, j];
+            }
+
+            if(total > maxTotal)
+            {
+                maxTotal = total;
+                maxIndex = i;
+            }
+
+            if(total == 0)
+            {
+                hasZeroCatch = true;
+            }
+        }
+
+        Console.WriteLine($"\nA legtöbb halat a(z) {maxIndex + 1}. horgász fogta: {maxTotal} db");
+        Console.WriteLine(hasZeroCatch ? "Volt olyan horgász, aki egyetlen halat sem fogott." : "Minden horgász fogott legalább egy halat.");
     }
 }
