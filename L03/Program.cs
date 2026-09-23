@@ -12,6 +12,9 @@ class Program
         SecondTask(pakli);
         CleanUp();
 
+        ThirdTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -62,5 +65,43 @@ class Program
             (pakli[i], pakli[randomIndex]) = (pakli[randomIndex], pakli[i]);
         }
         Console.WriteLine(string.Join(", ", pakli));
+    }
+
+    static void ThirdTask()
+    {
+        PrintTaskHeader(3);
+
+        List<string> words = [];
+        
+        while (true)
+        {
+            Console.Write("Adj meg egy szót (vagy írd be a 'STOP' parancsot a kilépéshez): ");
+            string input = Console.ReadLine() ?? "";
+            if (input.Equals("STOP", StringComparison.CurrentCultureIgnoreCase))
+            {
+                break;
+            }
+            if(!string.IsNullOrWhiteSpace(input))
+            {
+                words.Add(input);
+            }
+        }
+
+        Console.Write("Adj meg egy keresőszót: ");
+        string filter = Console.ReadLine() ?? "";
+
+        if(string.IsNullOrWhiteSpace(filter))
+        {
+            Console.WriteLine("A keresőszó üres, nem lehet szűrni.");
+            return;
+        }
+
+        for(int i = 0; i < words.Count; i++)
+        {
+            if(words[i].Contains(filter, StringComparison.CurrentCultureIgnoreCase))
+            {
+                Console.WriteLine($"A(z) '{filter}' szó megtalálható a(z) {i+1}. szóban: {words[i]}");
+            }
+        }
     }
 }
