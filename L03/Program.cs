@@ -23,6 +23,9 @@ class Program
         SeventhTask();
         CleanUp();
 
+        EighthTask();
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -284,5 +287,29 @@ class Program
 
         Console.WriteLine($"\nA legtöbb halat a(z) {maxIndex + 1}. horgász fogta: {maxTotal} db");
         Console.WriteLine(hasZeroCatch ? "Volt olyan horgász, aki egyetlen halat sem fogott." : "Minden horgász fogott legalább egy halat.");
+    }
+
+    static void EighthTask()
+    {
+        PrintTaskHeader(8);
+
+        Console.Write("Adj meg egy pozitív egész számot: ");
+        int n = int.Parse(Console.ReadLine() ?? "0");
+
+        if(n <= 0)
+        {
+            Console.WriteLine("A szám nem lehet nulla vagy negatív.");
+            return;
+        }
+
+        List<int> numbers = [n];
+        while(numbers[^1] != 1)
+        {
+            int k = numbers[^1];
+            int next = k % 2 == 0 ? k / 2 : 3 * k + 1;
+            numbers.Add(next);
+        }
+
+        Console.WriteLine(string.Join(", ", numbers));
     }
 }
