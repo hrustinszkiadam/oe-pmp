@@ -9,6 +9,9 @@ class Program
         Console.WriteLine(string.Join(", ", pakli));
         CleanUp();
 
+        SecondTask(pakli);
+        CleanUp();
+
         Console.WriteLine("\n\nNyomd meg az Enter-t a kilépéshez...");
         Console.ReadLine();
     }
@@ -46,5 +49,18 @@ class Program
             }
         }
         return pakli;
+    }
+
+    static void SecondTask(string[] pakli)
+    {
+        PrintTaskHeader(2);
+        Console.WriteLine("A pakli keverése...");
+        Random rnd = new();
+        for (int i = 0; i < pakli.Length - 1; i++)
+        {
+            int randomIndex = rnd.Next(pakli.Length);
+            (pakli[i], pakli[randomIndex]) = (pakli[randomIndex], pakli[i]);
+        }
+        Console.WriteLine(string.Join(", ", pakli));
     }
 }
