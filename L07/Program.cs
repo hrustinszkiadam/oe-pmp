@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        //WhackAMole();
-        //ListFlights();
+        WhackAMole();
+        ListFlights();
         ExamResults();
 
         Console.ReadLine();
