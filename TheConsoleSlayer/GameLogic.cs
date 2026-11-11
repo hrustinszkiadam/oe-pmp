@@ -298,7 +298,7 @@ public class GameLogic
           game.PlaySoundEffect(SoundEffectType.Pain);
           break;
         default:
-          throw new ArgumentException("Invalid item type");
+          break;
       }
     }
   }
