@@ -168,7 +168,7 @@ public class Game
     else if (OperatingSystem.IsMacOS())
     {
       StopPlayer(sfxProcess);
-      sfxProcess = Process.Start("afplay", path);
+      sfxProcess = StartAfplay(path);
     }
   }
 
@@ -182,15 +182,24 @@ public class Game
     else if (OperatingSystem.IsMacOS())
     {
       StopPlayer(musicProcess);
-      musicProcess = Process.Start("afplay", path);
+      musicProcess = StartAfplay(path);
     }
+  }
+
+  private Process? StartAfplay(string path)
+  {
+    int gameId = Environment.ProcessId;
+    string script = "afplay \"" + path + "\" & sound=$!; " +
+                    "while kill -0 " + gameId + " 2>/dev/null && kill -0 $sound 2>/dev/null; do sleep 0.5; done; " +
+                    "kill $sound 2>/dev/null";
+    return Process.Start("sh", new string[] { "-c", script });
   }
 
   private void StopPlayer(Process? soundPlayer)
   {
     if (soundPlayer != null && !soundPlayer.HasExited)
     {
-      soundPlayer.Kill();
+      soundPlayer.Kill(true);
     }
   }
 
