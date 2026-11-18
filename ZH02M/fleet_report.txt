@@ -1,0 +1,78 @@
+Current Date is 2185.	09.	11.	00:00:00.
+Total ship count is 17.
+Average cargo by ship types:
+	Cargo:	13340000
+	Military:	3500
+	Research:	6000
+	Mining:	27666666.666666668
+	Colonial:	11333.333333333334
+	Rescue:	750
+Detailed info sorted by risk:
+=== USCSS Nostromo (Cargo) ===
+	Crew:	7 (InCryosleep)
+	Last message:	23085 days
+	Rescue needed:	Yes
+=== USCSS Prometheus (Research) ===
+	Crew:	17 (Deceased)
+	Last message:	33497 days
+	Rescue needed:	Yes
+=== USCSS Torrens (Cargo) ===
+	Crew:	3 (Active)
+	Last message:	692 days
+	Rescue needed:	Yes
+=== DSMO Marion (Research) ===
+	Crew:	8 (MissingInAction)
+	Last message:	23117 days
+	Rescue needed:	Yes
+=== USCSS Patna (Cargo) ===
+	Crew:	6 (InCryosleep)
+	Last message:	23165 days
+	Rescue needed:	Yes
+=== Geryon (Research) ===
+	Crew:	14 (Deceased)
+	Last message:	33501 days
+	Rescue needed:	Yes
+=== Gaspar (Research) ===
+	Crew:	20 (Deceased)
+	Last message:	632 days
+	Rescue needed:	Yes
+=== USCSS Corbelan (Rescue) ===
+	Crew:	4 (Active)
+	Last message:	17437 days
+	Rescue needed:	Yes
+=== Conestoga (Colonial) ===
+	Crew:	158 (InCryosleep)
+	Last message:	10400 days
+	Rescue needed:	Yes
+=== Seegson (Mining) ===
+	Crew:	18 (InCryosleep)
+	Last message:	646 days
+	Rescue needed:	No
+=== USCSS Sephora (Colonial) ===
+	Crew:	300 (MissingInAction)
+	Last message:	2275 days
+	Rescue needed:	Yes
+=== Narcissus (Rescue) ===
+	Crew:	1 (Active)
+	Last message:	23110 days
+	Rescue needed:	Yes
+=== Onager (Mining) ===
+	Crew:	12 (Active)
+	Last message:	392 days
+	Rescue needed:	Yes
+=== USS Legato (Military) ===
+	Crew:	150 (Active)
+	Last message:	2264 days
+	Rescue needed:	Yes
+=== Anesidora (Mining) ===
+	Crew:	5 (Deceased)
+	Last message:	17775 days
+	Rescue needed:	Yes
+=== Covenant (Colonial) ===
+	Crew:	2000 (InCryosleep)
+	Last message:	29794 days
+	Rescue needed:	Yes
+=== USS Sulaco (Military) ===
+	Crew:	12 (MissingInAction)
+	Last message:	2283 days
+	Rescue needed:	Yes
